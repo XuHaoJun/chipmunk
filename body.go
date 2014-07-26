@@ -2,7 +2,7 @@ package chipmunk
 
 import (
 	"github.com/vova616/chipmunk/vect"
-	//. "github.com/vova616/chipmunk/transform" 
+	//. "github.com/vova616/chipmunk/transform"
 	"math"
 )
 
@@ -182,6 +182,12 @@ func (body *Body) MomentIsInf() bool {
 func (body *Body) SetAngle(angle vect.Float) {
 	body.BodyActivate()
 	body.setAngle(angle)
+}
+
+func (body *Body) LookAt(pos vect.Vect) {
+	toTarget := vect.Vect{X: pos.X - body.p.X, Y: pos.Y - body.p.Y}
+	desiredAngle := math.Atan2(float64(toTarget.X), float64(toTarget.Y))
+	body.SetAngle(vect.Float(desiredAngle))
 }
 
 func (body *Body) AddAngle(angle float32) {
