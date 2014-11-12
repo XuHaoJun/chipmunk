@@ -1,10 +1,15 @@
 package vect
 
 import (
+	"fmt"
 	"math"
 )
 
 type Float float32
+
+func (f Float) String() string {
+	return fmt.Sprintf("%d", f)
+}
 
 var (
 	Vector_Zero = Vect{0, 0}
@@ -43,6 +48,10 @@ func FClamp(val, min, max Float) Float {
 //basic 2d vector.
 type Vect struct {
 	X, Y Float
+}
+
+func (v1 Vect) String() string {
+	return fmt.Sprintf("[%f, %f]", v1.X, v1.Y)
 }
 
 //adds v2 to the given vector.
